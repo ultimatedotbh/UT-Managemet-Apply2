@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تقديم الادارة | Ultimate RP Beta</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* --- نفس التنسيقات اللي عندك --- */
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
+body {background: linear-gradient(135deg,#2e1a1a 0%,#3e1616 100%); color:#fff; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px;}
+.container {max-width:600px;width:100%;background:rgba(69,19,19,0.9);border-radius:15px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.5);border:2px solid #c84e4e;position:relative;}
+.header {background:linear-gradient(90deg,#c84e4e,#920000);padding:25px;text-align:center;position:relative;}
+.header h1 {font-size:2rem;margin-bottom:10px;text-shadow:2px 2px 4px rgba(0,0,0,0.3);}
+.header p {font-size:1.1rem;opacity:0.9;}
+.form-container {padding:30px;}
+.form-group {margin-bottom:25px;}
+.form-group label {display:block;margin-bottom:8px;font-weight:600;color:#c5c5c5;}
+.form-group input, .form-group select, .form-group textarea {width:100%;padding:12px 15px;border-radius:8px;border:2px solid #c84e4e;background:rgba(255,255,255,0.1);color:white;font-size:1rem;transition:all 0.3s ease;}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {outline:none;border-color:#fb8f8f;background:rgba(255,255,255,0.15);}
+.form-group textarea {min-height:120px;resize:vertical;}
+.submit-btn {display:block;width:100%;padding:15px;background:linear-gradient(90deg,#c03434,#920000);color:white;border:none;border-radius:8px;font-size:1.2rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;margin-top:20px;}
+.submit-btn:hover {transform:translateY(-3px);box-shadow:0 5px 15px rgba(207,16,16,0.4);}
+.submit-btn:disabled {background:linear-gradient(90deg,#7c7c7c,#4a4a4a);cursor:not-allowed;transform:none;box-shadow:none;}
+.footer {text-align:center;padding:20px;background:rgb(69,19,19);font-size:0.9rem;color:#8f8f8f;}
+.footer p {text-align:center;direction:ltr;}
+.required {color:#ff4d4d;}
+.notification {position:fixed;top:20px;left:50%;transform:translateX(-50%);padding:15px 25px;border-radius:8px;z-index:1000;display:flex;align-items:center;gap:10px;box-shadow:0 5px 15px rgba(0,0,0,0.2);opacity:0;transition:opacity 0.3s ease;}
+.notification.show {opacity:1;}
+.success-notification {background:rgba(46,204,113,0.9);border:1px solid #2ecc71;color:white;}
+.error-notification {background:rgba(231,76,60,0.9);border:1px solid #e74c3c;color:white;}
+.loading-notification {background:rgba(52,152,219,0.9);border:1px solid #3498db;color:white;}
+@media(max-width:768px){.header h1{font-size:1.8rem;}.form-container{padding:20px;}.notification{width:90%;text-align:center;}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header" style="display:flex;align-items:center;gap:20px;flex-direction:row-reverse;">
+    <img src="ut.png" alt="شعار الفريق" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #fff;">
+    <div>
+      <h1>تقديم الادارة | Ultimate RP Beta</h1>
+      <p>املأ النموذج وسيتم إرسال بياناتك</p>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form id="applicationForm">
+      <div class="form-group">
+        <label for="name">الاسم الكامل <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required placeholder="أدخل اسمك الثلاثي">
+      </div>
+      <div class="form-group">
+        <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">رقم الهاتف <span class="required">*</span></label>
+        <input type="tel" id="phone" name="phone" required placeholder="39XXXXXXXX">
+      </div>
+      <div class="form-group">
+        <label for="metagaming">ما هو معنى الـ Meta Gaming؟ <span class="required">*</span></label>
+        <textarea id="metagaming" name="metagaming" required placeholder="اكتب إجابتك هنا"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="powergaming">ما هو معنى الـ Powergaming؟ <span class="required">*</span></label>
+        <textarea id="powergaming" name="powergaming" required placeholder="اكتب إجابتك هنا"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="experience">سنوات الخبرة <span class="required">*</span></label>
+        <select id="experience" name="experience" required>
+          <option value="">-- اختر سنوات الخبرة --</option>
+          <option value="أقل من سنة">أقل من سنة</option>
+          <option value="1-3 سنوات">1-3 سنوات</option>
+          <option value="3-5 سنوات">3-5 سنوات</option>
+          <option value="أكثر من 5 سنوات">أكثر من 5 سنوات</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">الرسالة <span class="required">*</span></label>
+        <textarea id="message" name="message" required placeholder="لماذا تريد الانضمام إلى فريقنا؟"></textarea>
+      </div>
+      <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> إرسال الطلب</button>
+    </form>
+  </div>
+
+  <div class="footer"><p>Ultimate RP جميع الحقوق محفوظة</p></div>
+</div>
+
+<div id="loadingNotification" class="notification loading-notification"><i class="fas fa-spinner fa-spin"></i><span>جاري إرسال البيانات، يرجى الانتظار...</span></div>
+<div id="successNotification" class="notification success-notification"><i class="fas fa-check-circle"></i><span>تم إرسال بياناتك بنجاح!</span></div>
+<div id="errorNotification" class="notification error-notification"><i class="fas fa-exclamation-circle"></i><span>حدث خطأ أثناء إرسال البيانات. يرجى المحاولة مرة أخرى.</span></div>
+
+<script>
+const form = document.getElementById('applicationForm');
+const submitBtn = form.querySelector('.submit-btn');
+const loadingNotification = document.getElementById('loadingNotification');
+const successNotification = document.getElementById('successNotification');
+const errorNotification = document.getElementById('errorNotification');
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzZkW3NXj8hdaYe6vXV6MZ7QIuARhtrr6dbYdXH6EpMKNIhbgefoL417Ls7DMAQ6_ma0w/exec';
+
+function showNotification(notification) {
+    [loadingNotification, successNotification, errorNotification].forEach(n => n.classList.remove('show'));
+    notification.classList.add('show');
+    if(notification !== loadingNotification){
+        setTimeout(()=>{notification.classList.remove('show');},5000);
+    }
+}
+
+form.addEventListener('submit', async e=>{
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    try{
+        submitBtn.innerHTML='<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+        submitBtn.disabled=true;
+        showNotification(loadingNotification);
+
+        const formData = new FormData(form);
+        const response = await fetch(scriptURL, { method:'POST', body: formData });
+        if(response.ok){
+            showNotification(successNotification);
+            form.reset();
+        } else {
+            throw new Error('فشل في إرسال البيانات');
+        }
+    } catch(error){
+        console.error(error);
+        showNotification(errorNotification);
+    } finally{
+        submitBtn.innerHTML='<i class="fas fa-paper-plane"></i> إرسال الطلب';
+        submitBtn.disabled=false;
+    }
+});
+</script>
+</body>
+</html>
